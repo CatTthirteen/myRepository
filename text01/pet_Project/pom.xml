@@ -15,7 +15,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.1.4.RELEASE</spring.version>
+    <spring.version>5.2.2.RELEASE</spring.version>
     <shiro.version>1.4.1</shiro.version>
   </properties>
 
@@ -188,7 +188,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>4.1.4.RELEASE</version>
+      <version>5.2.2.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
