@@ -1,0 +1,8 @@
+function showClient() {
+
+    layer_show("人工客服","front/client.jsp",700,700);
+}
+function showClientQuick() {
+
+    layer_show("快速回复","front/clientQuick.jsp",700,700);
+}

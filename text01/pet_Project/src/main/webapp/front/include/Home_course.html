@@ -1,0 +1,165 @@
+ <div class="info">
+    <div class="left">
+        <a href="javascript:void(0)"><img src="images/HomeCourse_bg1.png"></a>
+        <a href="javascript:void(0)"><img src="images/HomeCourse_bg2.png"></a>
+    </div>
+    <div class="right">
+    	<div class="box box1">
+        	 <div class="item">
+                <ul>
+                    <li class="li1">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course01.png">
+                                <div class="tit"><span>皮肤病</span><br /><em>Skin Disease</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li2">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course02.png">
+                                <div class="tit"><span>口腔疾病</span><br /><em>Oral Diseases</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li3">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course03.png">
+                                <div class="tit"><span>呼吸系统疾病</span><br /><em>Respiratory Diseases</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li4">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course04.png">
+                                <div class="tit"><span>胃肠道疾病</span><br /><em>Gastrointestinal Diseases</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li5">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course05.png">
+                                <div class="tit"><span>心血管疾病 </span><br /><em>Cardiovascular Disease</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li6">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course06.png">
+                                <div class="tit"><span>泌尿系统疾病 </span><br /><em>Urinary System Diseases</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li7">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course07.png">
+                                <div class="tit"><span>骨关节疾病</span><br /><em>Bone And Joint Diseases</em></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+             </div>   
+             <div class="iteminfo">
+             	<div style=" font-size:1.5em;">宠物医生</div>
+                <p style="">巴贝氏虫病（Babesiosis） 犬巴贝氏虫病由犬巴贝氏虫（Babesia canis / Bgibson）感染引起。由媒介扇头蜱叮咬传播，犬发病率较高。巴贝氏虫可侵入犬红细胞内，犬感染后可表现高热，拒食和拒绝饮水，不思运动。猫巴贝氏虫病则由猫巴贝氏虫（B.cati）致病所致，症状如犬。
+				</p>
+                <p>现有治疗巴贝氏虫病药为imidocarb，疗效佳。欧洲已研制出有效的抗巴贝氏虫病疫苗，但是仅能
+保护同源性犬类巴贝氏虫病，应用范围局限。</p>
+				<a href=""><img src="images/H_more2.jpg" /></a>
+             </div>
+        </div>
+        <div class="box box2">
+        	 <div class="item">
+                <ul>
+                    <li class="li1">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course05.png">
+                                <div class="tit"><span>品种介绍</span><br /><em>Varieties</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li2">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course02.png">
+                                <div class="tit"><span>爱宠养护指南</span><br /><em>Dotes Conservation Guide</em></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="li3">
+                         <a href="">
+                            <div class="info">
+                                <img src="images/course07.png">
+                                <div class="tit"><span>疾病与健康</span><br /><em>Diseases and Health</em></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+             </div>   
+             <div class="iteminfo">
+             	<div style=" font-size:1.5em;">宠物主人</div>
+                <p style="">巴贝氏虫病（Babesiosis） 犬巴贝氏虫病由犬巴贝氏虫（Babesia canis / Bgibson）感染引起。由媒介扇头蜱叮咬传播，犬发病率较高。巴贝氏虫可侵入犬红细胞内，犬感染后可表现高热，拒食和拒绝饮水，不思运动。猫巴贝氏虫病则由猫巴贝氏虫（B.cati）致病所致，症状如犬。
+				</p>
+                <p>现有治疗巴贝氏虫病药为imidocarb，疗效佳。欧洲已研制出有效的抗巴贝氏虫病疫苗，但是仅能
+保护同源性犬类巴贝氏虫病，应用范围局限。</p>
+				<a href=""><img src="images/H_more2.jpg" /></a>
+             </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+   //内容切换
+   $(".HomeCourse .right .box").hide().first().show();
+   $(".HomeCourse .left a").each(function(i){
+	   		$(this).click(function(){
+					  $(".HomeCourse .right .box").hide();
+					    $(".HomeCourse .right .box").eq(i).show();
+				})
+	   })
+   
+   //图片放大
+    $(window).load(function () {
+        $(".item ul li").each(function () {
+            //设置和获取一些变量
+            var thumbnail = {
+                imgIncrease: 20, /* 增加图像像素（变焦） */
+                effectDuration: 400, /* 效果的持续时间（变焦和标题） */
+                imgWidth: $(this).find('img').width(),
+                imgHeight: $(this).find('img').height()
+            };
+            $(this).css({
+                'width': thumbnail.imgWidth,
+                'height': thumbnail.imgHeight
+            });
+            $(this).hover(function () {
+                $(this).find('img').stop().animate({
+                    /* 变焦效果，提高图像的宽度 */
+                    width: parseInt(thumbnail.imgWidth) + thumbnail.imgIncrease,
+                    height: parseInt(thumbnail.imgHeight) + thumbnail.imgIncrease,
+                    /* 我们需要改变的左侧和顶部的位置，才能有放大效应，因此我们将它们移动到一个负占据一半的img增加 */
+                    left: thumbnail.imgIncrease / 2 * (-1),
+                    top: thumbnail.imgIncrease / 2 * (-1)
+
+                }, {
+                    "duration": thumbnail.effectDuration,
+                    "queue": false
+                });
+                //当鼠标离开...
+            }, function () {
+                $(this).find('img').animate({
+                    width: thumbnail.imgWidth,
+                    height: thumbnail.imgHeight,
+                    left: 0,
+                    top: 0
+                }, thumbnail.effectDuration);
+            });
+        });
+    });
+</script>

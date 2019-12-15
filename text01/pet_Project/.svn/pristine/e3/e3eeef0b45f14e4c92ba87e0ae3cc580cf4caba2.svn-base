@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html lang="zh-cn">
+<head>
+    <base href="<%=request.getContextPath()+"/"%>">
+    <%@  taglib   prefix= "c" uri= "http://java.sun.com/jsp/jstl/core" %>
+    <%@  taglib   prefix= "fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
+    <%@  taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="Author" content="">
+    <meta content=" shop116703760.taobao.com/index.htm" name="design">
+    <title>上海汉维生物医药科技有限公司</title>
+    <link rel="stylesheet" type="text/css" href="front/css/css_whir.css"/>
+    <script type="text/javascript" src="front/scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="after/lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="after/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript" src="after/lib/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="front/js/H-ui.js"></script>
+    <script type="text/javascript" src="front/js/H-ui.admin.js"></script>
+
+    <script src="front/scripts/ttScrollBar.js"></script>
+    <script src="front/scripts/html5media/1.1.8/html5media.min.js"></script>
+    <script src="front/scripts/jquery.SuperSlide.2.1.1.js"></script>
+    <![endif]-->
+    <style type="text/css">
+       /* .Toper{ background:url(images/navon_bg.png) no-repeat 817px top;}*/
+    </style>
+</head>
+
+<body>
+<!--top-->
+<header class="header2">
+    <section class="Toper Toper2">
+        <a href="index.html" class="logo"><img src="front/images/logo.png"/></a>
+        <section class="welcome">欢迎：<em>${user.name}</em><a href="">[退出]</a></section>
+        <nav class="MainNav">
+            <ul>
+                <li><a class="navA" href="front/index.jsp"><span>首页</span><em>Home</em></a></li>
+                <li><a class="navA" href="frontUser/getUserById"><span>个人资料</span><em>MemberCenter</em></a></li>
+                <li><a class="navA" href="productFront/getFrontProduct"><span>在线下单</span><em>Online order</em></a></li>
+                <li><a class="navA" href="orderFront/getFrontOrderDetailListByUid"><span>订单信息</span><em>Historical orders</em></a></li>
+                <li><a class="navA" href="front/feedback.jsp"><span>意见反馈</span><em>Feedback</em></a></li>
+            </ul>
+        </nav>
+    </section>
+</header>
+
+<!--top End-->
+<section class="Contain">
+    <section class="Content">
+        <div class="onlineorder">
+            <div class="title"><span>在线下单/</span><em>Online order </em></div>
+            <div class="orderbox">
+                <div class="Tab">
+                    <a href="javascript:void(0)" class="prev"></a>
+                    <a href="javascript:void(0)" class="next"></a>
+                    <div class="TabList">
+                        <ul>
+                            <c:forEach items="${list}" var="product">
+                                <li><a href="javascript:void(0)" onclick="getprod(${product.pid})">${product.pname}</a></li>
+                               <%-- <li><a href="javascript:void(0)">宠立维</a></li>--%>
+                                <%--<input type="hidden" value="${product.pprice}" id="${product.pname}">--%>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+                <div class="standard">
+                    <dl>
+                        <dt>规 格</dt>
+                        <dt>包 装</dt>
+                        <dt>单 价</dt>
+                        <dt>数 量</dt>
+                        <dt class="last">金 额/元</dt>
+                    </dl>
+                </div>
+                <div class="itemlist">
+                    <dl>
+                        <dt class="dt1"><input type="radio" name="mg" class="radio"><span class="radio2">73mg</span><input type="radio" name="mg" class="radio"><span class="radio2">300mg</span> </dt>
+                        <dt class="dt2"><span class="pack" id="pack">7片/板</span></dt>
+                        <dt class="dt3" id="dlprice" >0 </dt>
+                        <dt class="dt4"><span class="num"><span class="left" id="left" onclick="low()"></span><input type="text" value="0" class="center" id="numb"><span class="right" id="right" onclick="add()"></span></span></dt>
+                        <dt class="dt5"><span class="price" id="pprice">0.00</span></dt>
+                    </dl>
+                </div>
+            </div>
+            <div class="totalprice" >总价：<span class="price" id="pcount">${pcount}</span>元</div>
+            <div class="guanzhu"><a href="">最新活动，关注微信</a></div>
+            <a href="javascript:void(0)" class="submit" onclick=" makeOrder()">提交订单</a>
+
+        </div>
+    </section>
+    <div class="clear"></div>
+</section>
+<script type="text/javascript">
+    jQuery(".orderbox .Tab").slide({mainCell: ".TabList ul", autoPage: true, effect: "left", autoPlay: false,vis:7})
+    $(".orderbox .TabList li").first().addClass("on");
+    $(".orderbox .TabList li").each(function(){
+        $(this).click(function(){
+            $(".orderbox .TabList li").removeClass("on");
+            $(this).addClass("on");
+        })
+    })
+    var height=$(".itemlist").find(".dt1").height();
+    $(".itemlist").find(".dt3").height(height);
+    $(".itemlist").find(".dt3").css("line-height",height+"px");
+    $(".itemlist").find(".dt4").height(height);
+    $(".itemlist").find(".dt5").css("line-height",height+"px");
+</script>
+<!----bottom---->
+<footer class="Bottom Bottom_memberbox">
+    <section class="Bottom_member">
+        <nav class="Bottomlinks2">
+            <ul>
+                <li><a href="">站长统计</a></li><em>|</em>
+                <li><a href="">法律声明</a></li><em>|</em>
+                <li><a href="">网站地图</a></li><em>|</em>
+                <li><a href="links.html">合作伙伴</a></li>
+            </ul>
+        </nav>
+        <div class="clear"></div>
+        <section class="CopyRight">
+            Copyright© 2015  上海汉维生物医药科技有限公司  粤ICP备99999999号
+            Designed by <a href="http://shop116703760.taobao.com/">我的虚拟世界店铺</a>
+        </section>
+    </section>
+</footer>
+
+<script type="text/javascript">
+    //购物车中下单的数量
+    debugger
+   var marke=${mnumber};
+
+    //全局变量  产品id
+    var pid=0;
+    //库存
+    var repertory;
+    //传入pid
+    //解决价格,规格同步与产品的映射
+    function getprod(id) {
+
+        pid=id;
+
+        var para=new Object();
+
+        para.pid=id;
+
+        //根据idc查商品信息
+        $.post("productFront/getProductByPid",para,function (data) {
+
+            //alert(data.pname);
+            //将库存放入全局变量
+            repertory=data.repertory;
+            //将数据填入html
+            $("#dlprice").text(data.pprice);
+            //如果购物车中没有则 数量归零
+            //数量放入
+            $("#numb").val(data.pnumber);
+            //当商品总价格归零
+            $("#pprice").text(data.pnumberPrice);
+
+            $("#pack").text(data.pack);
+
+        });
+
+    }
+
+
+    //根据产品id 操作购物车
+    function cart(pid,url) {
+
+        var para=new Object();
+
+         para.pid=pid;
+
+        $.post(url,para,function (data) {
+              //提示信息
+              //alert(data.msg);
+        });
+
+    }
+
+
+
+
+    //点击加号 改变页面值 并添加购物车
+    function add(){
+        debugger
+        //获得单价
+        if(pid==0){
+            alert("请选择商品");
+            return;
+        }
+        var dlprice=$("#dlprice").text();
+        //数量
+        var numb=$("#numb").val();
+        //数量加一
+        numb++;
+        marke++;
+        //如果大于库存则 不自增
+        if(numb>repertory){
+            alert("没库存了");
+            return;
+        }
+
+        $("#numb").val(numb);
+
+
+       //价格X数量
+        pprice=dlprice*numb;
+
+        //给商品价格赋值
+        $("#pprice").text(pprice);
+
+        //给总价格赋值
+
+       var pcount=$("#pcount").text();
+
+        count= parseFloat(pcount,  10)+ parseFloat(dlprice,  10);
+
+        //总价+单价
+        $("#pcount").text(count);
+
+        //添加购物车
+        cart(pid,"productFront/addCart");
+    }
+    //减  改变页面值 修改购物车
+    function low() {
+        debugger
+        //获得单价
+        var dlprice=$("#dlprice").text();
+        //数量
+        var numb=$("#numb").val();
+        //数量加一
+        numb--;
+        marke--;
+        if(numb>=0){
+        $("#numb").val(numb);
+        //价格X数量
+        pprice=dlprice*numb;
+
+        //给商品价格赋值
+        $("#pprice").text(pprice);
+
+
+        //给总价格赋值
+
+        var pcount=$("#pcount").text();
+
+
+
+        count= parseFloat(pcount,  10)- parseFloat(dlprice,  10);
+
+        //总价+单价
+        $("#pcount").text(count);
+
+         //向后台提交数据
+        cart(pid,"productFront/reduceCart");
+        }
+
+    }
+
+    function admin_edit(title,url,id,w,h){
+        layer_show(title,url,w,h);
+    }
+    function makeOrder() {
+
+        if(marke<=0){
+            alert("您还未选择商品");
+            return;
+        }
+        location.href="productFront/makeOrder";
+    }
+</script>
+</body>
+</html>

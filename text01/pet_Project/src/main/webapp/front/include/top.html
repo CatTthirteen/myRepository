@@ -1,0 +1,144 @@
+<header>
+	<section class="Toper">
+        <a href="index.html" class="logo"><img src="images/logo.png"/></a>
+        <section class="Search">		
+       		 <a href="javascript:void(0)" onclick="return GoSearchUrl();" class="sreach_btn"></a>			
+            <input name="" type="text" class="sreach_ipu" id="key" value="请输入关键字" onblur="if(this.value=='')this.value='请输入关键字';" onfocus="if(this.value=='请输入关键字')this.value='';" onkeydown="entersearch()"/>
+            
+        </section>
+       <nav class="MainNav">
+          <ul>
+             <li id="nav1"><a class="navA" href="index.html"><span>首页</span><em>Home</em></a></li>
+             <li id="nav2">
+             	<a class="navA" href="about.html" name="关于汉维"><span>关于维汉</span><em>About Us</em> </a>
+                <div class="subnav">
+                    <div class="navtop">
+                        <dl>
+                            <dt><a href="">公司介绍<em>Company Profile</em></a></dt>
+                            <dt><a href="">品牌故事<em>Brand Story</em></a></dt>
+                            <dt><a href="">企业文化<em>Enterprise Culture</em></a></dt>
+                            <dt><a href="">大事记<em>Memorabilia</em></a></dt>
+                        </dl>
+                        <img src="uploadfiles/image/subnav.jpg" />
+                    </div>
+                    <div class="navbot"></div>
+                </div>
+             </li>
+         	 <li id="nav3">
+             	<a class="navA" href="product.html" name="汉维产品"><span>汉维产品</span><em>Our Products</em> </a>
+                 <div class="subnav">
+                    <div class="navtop">
+                        <dl>
+                            <dt><a href="">宠立维<em> Trolevis</em></a></dt>
+                            <dt><a href="">美昔<em>Melocam</em></a></dt>
+                        </dl>
+                        <img src="uploadfiles/image/subnav.jpg" />
+                    </div>
+                    <div class="navbot"></div>
+                </div>
+             </li>
+             <li id="nav4">
+             	<a class="navA" href="newslist.html" name="新闻活动"><span>新闻活动</span><em>Latest News</em> </a>
+                 <div class="subnav">
+                    <div class="navtop">
+                        <dl> 
+                            <dt><a href="">汉维动态<em>Hanvet Press</em></a></dt>
+                            <dt><a href="">优惠活动<em>Promotion</em></a></dt>
+                        </dl>
+                        <img src="uploadfiles/image/subnav.jpg" />
+                    </div>
+                    <div class="navbot"></div>
+                </div>
+             </li>
+             <li id="nav5">
+             	<a class="navA" href="coursehost.html" name="汉维课堂"><span>汉维课堂</span><em>Hanvet Classroom</em> </a>
+                <div class="subnav">
+                    <div class="navtop">
+                        <dl>
+                            <dt><a href="">皮肤病<em>Dermatosis</em></a></dt>
+                            <dt><a href="">口腔疾病<em>Oral Diseases</em></a></dt>
+                            <dt><a href="">呼吸系统疾病<em>Respiratory Disease</em></a></dt>
+                            <dt><a href="">胃肠道疾病<em>Gastrointestinal disease</em></a></dt>
+                        </dl>
+                        <img src="uploadfiles/image/subnav.jpg" />
+                    </div>
+                    <div class="navbot"></div>
+                </div>
+             </li>
+             <li id="nav6">
+             	<a class="navA" href="job.html" name="职业发展"><span>职业发展</span><em>Careers</em> </a>
+                
+             </li>
+             <li id="nav7">
+             	<a class="navA" href="contact.html" name="关于汉维"><span>联系我们</span><em>Contact Us</em> </a>
+                
+             </li>
+          </ul>
+          <div class="clear"></div>
+       </nav>
+       <div class="clear"></div>
+       <section class="fixed">
+       		<a href="login.html" class="Pet"><b>宠物医院登陆</b><br /><em>Pet hospital log in </em></a>
+            <a href="buy.html" class="where"><b>去哪儿买</b><br /><em>Where to Buy</em></a>
+       </section>
+   </section>
+</header>
+<script type="text/javascript">
+   //导航选中
+
+	$(".MainNav li").each(function(){
+			$(this).hover(function(){
+				
+					$(this).find(".subnav").stop().slideToggle();
+			})
+		})
+	//搜索
+	$(".Search").hover(function(){
+			$(this).find(".sreach_ipu").toggle("slow");
+		})
+</script>
+<script type="text/javascript">
+    //this function do not use jquery for honner page?
+    function GoSearchUrl() {
+        var searchinput = document.getElementById("key");
+        if (searchinput.value == "" || searchinput.value == "请输入关键字") {
+            alert("请输入关键字！");
+            searchinput.focus();
+            return false;
+        }
+        if (searchinput.value.length > 50) {
+            alert("输入的关键字字数不要过多！");
+            searchinput.focus();
+            return false;
+        }
+        CheckString(searchinput.value);
+    }
+
+    function GoSreach(rs) {
+        window.location = "{$syspath}search/search.aspx?key=" + escape(rs);
+        return true;
+    }
+
+    function entersearch() {
+        //alert(dd);
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13) {
+            GoSearchUrl();
+        }
+    }
+
+    function CheckString(s) {
+        var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）—|{}【】‘；：”“'。，、？]")
+        var rs = "";
+        for (var i = 0; i < s.length; i++) {
+            rs = rs + s.substr(i, 1).replace(pattern, '');
+        }
+        if (rs == "") {
+            alert("不能输入特殊字符！");
+            return false;
+        }
+        else {
+            GoSreach(rs);
+        }
+    }
+</script> 

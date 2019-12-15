@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="sessionMode" value="native"/>
+		<property name="realm" ref="userRealm"/>
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+	<bean id="userRealm" class="com.qf.realm.UserRealm">
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				&lt;!&ndash; 加密的算法 &ndash;&gt;
+				<property name="hashAlgorithmName" value="MD5"></property>
+				&lt;!&ndash;加密次数 &ndash;&gt;
+				<property name="hashIterations" value="1024"></property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+
+		<property name="securityManager" ref="securityManager"/>
+
+		<property name="loginUrl" value="/front/userLogin.jsp"/>
+
+		<property name="successUrl" value="/front/index.jsp"/>
+
+		<property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+
+		<property name="filterChainDefinitions">
+			&lt;!&ndash;anon:匿名访问(没有认证)&ndash;&gt;
+			&lt;!&ndash;authc:必须要认证后才可以访问,通过记住我登录不算&ndash;&gt;
+			&lt;!&ndash;logout:注销&ndash;&gt;
+			&lt;!&ndash;user:认证成功或者通过记住我登录都我可以访问&ndash;&gt;
+			<value>
+				/front/css/**=anon
+				/front/images/**=anon
+				/front/js/**=anon
+				/front/include/**=anon
+				/front/media/**=anon
+				/front/scripts/**=anon
+				/front/uploadfiles/**=anon
+				/upload/**=anon
+
+				/front/userLogin.jsp=anon
+				/frontUser/login=anon
+				/after/**=anon
+				/mylogout=logout
+				/** = user
+			</value>
+		</property>
+	</bean>-->
+
+</beans>

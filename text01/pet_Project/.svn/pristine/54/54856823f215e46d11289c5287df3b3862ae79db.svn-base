@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.IOrderDetailDao">
+
+    <resultMap type="orderDetail" id="orderDetailmap">
+        <id column="odid" property="odid"/>
+        <result column="pid" property="pid"/>
+        <result column="pname" property="pname"/>
+        <result column="pnumber" property="pnumber"/>
+        <result column="pprice" property="pprice"/>
+        <result column="isDiscuss" property="isDiscuss"/>
+    </resultMap>
+
+
+  <resultMap id="orderDetailmap2" type="orderDetail" extends="orderDetailmap">
+        <result column="create_time" property="creaTeime"></result>
+      <result column="pimage" property="pimage"></result>
+      <result column="oname" property="oname"></result>
+      <result column="ostatus" property="ostatus"></result>
+    </resultMap>
+
+
+    <select id="getListOrderDetail" resultMap="orderDetailmap">
+               SELECT
+            *
+        FROM
+            t_order_detail
+        WHERE
+            oid = #{id};
+    </select>
+
+
+    <select id="getFrontOrderDetailListByUid" resultMap="orderDetailmap2">
+                          SELECT
+                        p.pname,
+                        o.create_time,
+                        od.pprice,
+                        od.pnumber,
+                        o.oname,
+                        od.ostatus,
+                      p.pimage,
+                      od.oid,
+                      od.pid,
+                      od.isDiscuss
+                    FROM
+                        t_order o,
+                        t_order_detail od,
+                        t_product p,
+                        t_user u
+                    WHERE
+                      u.id=#{uid}
+                    AND u.id=o.uid
+                    AND
+                        o.oid = od.oid
+                    AND p.pid = od.pid;
+      </select>
+
+
+
+
+
+
+
+ <!--   <select id="getOrderall" resultType="int">
+                   SELECT
+                COUNT(1)
+            FROM
+                t_user tu,
+                t_order tor
+            <where>
+                tu.id = tor.uid
+            <if test="oname !=null and oname!=''">
+            AND tor.oname LIKE concat('%',#{oname},'%')
+            </if>
+
+            <if test="uname !=null and uname!=''">
+            AND tu.name LIKE concat('%',#{uname},'%')
+            </if>
+            </where>
+    </select>
+
+
+    <select id="getorderList" resultMap="ordermap">
+       SELECT
+	od.*, us.`name` AS uname
+FROM
+	t_order od,
+	t_user us
+        <where>
+            us.id = od.uid
+            <if test="oname !=null and oname!=''">
+                AND od.oname LIKE concat('%',#{oname},'%')
+            </if>
+
+            <if test="uname !=null and uname!=''">
+                AND us.name LIKE concat('%',#{uname},'%')
+            </if>
+        </where>
+	AND od.isdelete=0
+	limit #{index},#{size};
+    </select>
+
+
+    <update id="orderDel">
+           UPDATE t_order
+    SET isdelete = 1
+
+    WHERE
+
+        oid =#{id};
+
+    </update>-->
+
+
+
+
+</mapper>

@@ -1,0 +1,18 @@
+<nav class="MenuList">
+	<div class="slide">
+        <div class="left"></div>
+       <ul>
+          <li id="menu1"><a href="doctor.html">宠物医生   </a></li>
+          <li id="menu2"><a href="coursehost.html"> 宠物主人</a></li>
+       </ul>
+       <div class="right"></div>
+   </div>
+</nav>
+<div class="clear"></div>
+<script type="text/javascript">
+   //导航选中
+    $("#menu" + menuID).addClass("on");
+	var num=$(".MenuList li").size();
+	var width=num*146+38;
+	$(".MenuList .slide").width(width);
+</script>

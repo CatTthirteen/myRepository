@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.IUserDao">
+
+	<resultMap id="userResultMap" type="user">
+		<id column="id" property="id"/>
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="pid" property="pid" />
+		<result column="cid" property="cid" />
+		<result column="address" property="address" />
+		<result column="phone" property="phone" />
+		<result column="pname" property="pname" />
+		<result column="cname" property="cname" />
+	</resultMap>
+
+	<resultMap id="shopResultMap" type="shop">
+		<id column="sid" property="sid"/>
+		<result column="pid" property="pid" />
+		<result column="cid" property="cid" />
+		<result column="sname" property="sname" />
+		<result column="saddress" property="saddress" />
+		<result column="sphone" property="sphone" />
+		<result column="simage" property="simage" />
+	</resultMap>
+
+	<select id="getUserPage" resultMap="userResultMap">
+		SELECT
+			tu.*, tp.pname,tc.cname
+		FROM
+			t_user tu,
+			t_province tp,
+			t_city tc
+		where tu.pid=tp.pid and tu.cid=tc.cid
+		limit #{index},#{size}
+	</select>
+
+	<select id="getUserCount" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			t_user tu,
+			t_province tp,
+			t_city tc
+		where tu.pid=tp.pid and tu.cid=tc.cid;
+	</select>
+
+	<select id="getPidList" resultType="province">
+		SELECT
+			*
+		FROM
+			t_province
+	</select>
+
+	<select id="selcityByPid" resultType="city">
+		SELECT
+		*
+		FROM
+		t_city
+		WHERE pid=#{pid}
+	</select>
+	<!-- 查询用户城市-->
+	<select id="selectUserCity" resultType="city">
+		SELECT
+		*
+		FROM
+		t_city
+		WHERE cid=#{cid}
+	</select>
+
+	<select id="login" resultType="user">
+		SELECT
+		*
+		FROM
+		t_user
+		WHERE name=#{name} and password=#{password}
+	</select>
+
+	<select id="getUserById" resultMap="userResultMap">
+		SELECT
+		tu.*, tp.pname,tc.cname
+		FROM
+		t_user tu,
+		t_province tp,
+		t_city tc
+		where tu.pid=tp.pid and tu.cid=tc.cid and tu.id=#{id}
+	</select>
+
+	<select id="selShop" resultMap="shopResultMap">
+		SELECT
+			*
+		FROM
+			t_shop
+		where pid=#{pid}
+		<if test="cid!=null">
+			and
+		cid=#{cid}
+		</if>
+	</select>
+</mapper>

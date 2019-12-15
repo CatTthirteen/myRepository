@@ -1,0 +1,137 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 14122
+  Date: 2019/10/17 0017
+  Time: 19:12
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <base href="<%=request.getContextPath()+"/"%>">
+
+    <%@  taglib   prefix= "c" uri= "http://java.sun.com/jsp/jstl/core" %>
+    <%@  taglib   prefix= "fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
+    <%@  taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="Author" content="">
+    <meta content=" shop116703760.taobao.com/index.htm" name="design">
+    <title>上海汉维生物医药科技有限公司</title>
+    <link rel="stylesheet" type="text/css" href="front/css/css_whir.css"/>
+    <script type="text/javascript" src="front/scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="front/scripts/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="after/lib/layer/1.9.3/layer.js"></script>
+    <script type="text/javascript" src="after/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript" src="after/lib/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="front/js/H-ui.js"></script>
+    <script type="text/javascript" src="front/js/H-ui.admin.js"></script>
+    <style type="text/css">
+        .Toper{ background:url(front/images/navon_bg.png) no-repeat 935px top;}
+    </style>
+</head>
+<body>
+<!--top-->
+<header class="header2">
+    <section class="Toper Toper2">
+        <a href="index.html" class="logo"><img src="front/images/logo.png"/></a>
+        <section class="welcome">欢迎：<em>${user.name}</em><a href="">[退出]</a></section>
+        <nav class="MainNav">
+            <ul>
+                <li><a class="navA" href="front/index.jsp"><span>首页</span><em>Home</em></a></li>
+                <li><a class="navA" href="frontUser/getUserById"><span>个人资料</span><em>MemberCenter</em></a></li>
+                <li><a class="navA" href="productFront/getFrontProduct"><span>在线下单</span><em>Online order</em></a></li>
+                <li><a class="navA" href="orderFront/getFrontOrderDetailListByUid"><span>订单信息</span><em>Historical orders</em></a></li>
+                <li><a class="navA" href="front/feedback.jsp"><span>意见反馈</span><em>Feedback</em></a></li>
+            </ul>
+        </nav>
+    </section>
+</header>
+
+<!--top End-->
+<section class="Contain">
+    <section class="Content">
+        <div class="historyorder">
+            <div class="title"><span>历史订单/</span><em>Historical orders </em></div>
+            <br>
+
+            <div class="orderlist">
+                    <c:forEach items="${odList}" var="od">
+
+                        <div class="orderlist"> <ul><li>
+                            <div class="num">订单编号:${od.oname}</div>
+                            <div class="name">
+                                <dl>
+                                    <dt class="dt1">产品图片</dt>
+                                    <dt class="dt2">产品名称</dt>
+                                    <dt class="dt3">下单时间</dt>
+                                    <dt class="dt4">价格</dt>
+                                    <dt class="dt5">数量</dt>
+                                    <dt class="dt6">状态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;评价</dt>
+                                </dl>
+                            </div>
+                        </li></ul></div>
+
+                        <ul>
+                    <li>
+                        <div class="item">
+                            <dl>
+                                <dt class="dt1"><img src="${od.pimage}" width="140" height="105"></dt>
+                                <dt class="dt2"><a href="">${od.pname}</a></dt>
+                                <dt class="dt3"><fmt:formatDate value="${od.creaTeime}"  pattern="yyyy-MM-dd "/></dt>
+                                <dt class="dt4">${od.pprice}</dt>
+                                <dt class="dt5">${od.pnumber}</dt>
+                                <dt class="dt6">${od.ostatus==1 ? "签收":"未签收"}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <c:if test="${od.ostatus == 1}">
+                                        <c:choose>
+                                        <c:when test="${od.isDiscuss == 0}">
+                                        <a href="javascript:;" onclick="admin_edit('评价','product/jumpDiscuss/${od.pid}/${od.oid}','1','800','500')">评价</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="javascript:;">已评价</a>
+                                        </c:otherwise>
+                                        </c:choose>
+                                    </c:if></dt>
+                            </dl>
+                        </div>
+                    </li>
+                        </ul>
+                    </c:forEach>
+
+                <div class="clear"></div>
+            </div>
+
+        </div>
+    </section>
+    <div class="clear"></div>
+</section>
+
+<!--bottom-->
+<footer class="Bottom Bottom_memberbox">
+    <section class="Bottom_member">
+        <nav class="Bottomlinks2">
+            <ul>
+                <li><a href="">站长统计</a></li><em>|</em>
+                <li><a href="">法律声明</a></li><em>|</em>
+                <li><a href="">网站地图</a></li><em>|</em>
+                <li><a href="links.html">合作伙伴</a></li>
+            </ul>
+        </nav>
+        <div class="clear"></div>
+        <section class="CopyRight">
+            Copyright© 2015  上海汉维生物医药科技有限公司  粤ICP备99999999号
+            Designed by <a href="http://shop116703760.taobao.com/">我的虚拟世界店铺</a>
+        </section>
+    </section>
+</footer>
+
+<script type="text/javascript">
+    function admin_edit(title,url,id,w,h){
+        layer_show(title,url,w,h);
+    }
+    //整站无图处理
+/*    jQuery.each(jQuery("img"), function (i, n) { jQuery(n).error(function () { n.src = ''; }); n.src = n.src; });*/
+</script>
+<!--bottom End-->
+</body>
+</html>

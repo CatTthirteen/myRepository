@@ -1,0 +1,95 @@
+package com.qf.service.impl;
+
+import com.qf.dao.IProductDao;
+import com.qf.entity.Discuss;
+import com.qf.entity.Product;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.qf.base.service.impl.BaseServiceImpl;
+import com.qf.entity.Ptype;
+import com.qf.service.IProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ProductServiceImpl extends BaseServiceImpl<Product>  implements IProductService {
+
+    @Autowired
+    IProductDao productDao;
+
+    @Override
+    public BaseMapper<Product> getMapper() {
+        return productDao;
+    }
+
+    /**
+     * 展示产品列表，分页，条件查询
+     * @param page
+     * @param product
+     * @return
+     */
+    @Override
+    public void getProductPage(Page<Product> page, Product product) {
+        EntityWrapper<Product> entityWrapper=new EntityWrapper<>();
+        entityWrapper.like("pname",product.getPname());
+        entityWrapper.like("pdesc",product.getPdesc());
+        List<Product> products = productDao.selectPage(page, entityWrapper);
+        page.setRecords(products);
+    }
+
+    @Override
+    public List<Product> getType() {
+        return productDao.getType();
+    }
+
+    @Override
+    public int batchDel(List<Integer> ids) {
+        return productDao.deleteBatchIds(ids);
+    }
+
+    @Override
+    public List<Ptype> getProdutType() {
+        return productDao.getProdutType();
+    }
+
+    @Override
+    public List<Product> getProductList(Integer id) {
+        return productDao.getProductList(id);
+    }
+
+    @Override
+    public int addDiscuss(Discuss discuss) {
+        Integer uid=discuss.getUid();
+        Integer pid=discuss.getPid();
+        String content=discuss.getContent();
+        String image=discuss.getImage();
+        return productDao.addDiscuss(uid,pid,content,image);
+    }
+
+    @Override
+    public int updOstatus(Discuss discuss) {
+        Integer pid=discuss.getPid();
+        Integer oid=discuss.getOid();
+        return productDao.updOstatus(pid,oid);
+    }
+
+    @Override
+    public void getDiscuss(Page<Discuss> page,Integer id) {
+        List<Discuss> discuss = productDao.getDiscuss(id);
+        int total=productDao.getTotal(id);
+        page.setTotal(total);
+        page.setRecords(discuss);
+    }
+
+    @Override
+    public void getDiscussImage(Page<Discuss> page,Integer id) {
+        List<Discuss> discuss = productDao.getDiscussImage(id);
+        int total=productDao.getTotal(id);
+        page.setTotal(total);
+        page.setRecords(discuss);
+    }
+
+}

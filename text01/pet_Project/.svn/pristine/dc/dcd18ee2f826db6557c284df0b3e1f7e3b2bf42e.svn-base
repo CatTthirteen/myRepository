@@ -1,0 +1,14 @@
+<header class="header2">
+	<section class="Toper Toper2">
+        <a href="index.html" class="logo"><img src="images/logo.png"/></a>
+        <section class="welcome">欢迎：<em>刘先生！</em><a href="">[退出]</a></section>
+		 <nav class="MainNav">
+             <ul>
+             <li><a class="navA" href="membercenter.html"><span>个人资料</span><em>MemberCenter</em></a></li>
+             <li><a class="navA" href="onlineorder.html"><span>在线下单</span><em>Online order</em></a></li>
+             <li><a class="navA" href="historyorder.html"><span>订单信息</span><em>Historical orders</em></a></li> 
+             <li><a class="navA" href="feedback.html"><span>意见反馈</span><em>Feedback</em></a></li>
+             </ul>
+         </nav>
+   </section>
+</header>

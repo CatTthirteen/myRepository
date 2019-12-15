@@ -1,0 +1,33 @@
+package com.qf.service.impl;
+
+import com.qf.dao.IOrderDetailDao;
+import com.qf.entity.OrderDetail;
+import com.qf.service.IOrderDetailService;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.qf.base.service.impl.BaseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class OrderDetailServiceimpl extends BaseServiceImpl<OrderDetail> implements IOrderDetailService {
+
+
+    @Autowired
+    IOrderDetailDao iOrderDetailDao;
+    @Override
+    public BaseMapper<OrderDetail> getMapper() {
+        return iOrderDetailDao;
+    }
+
+    @Override
+    public List<OrderDetail> getListOrderDetail(Integer id) {
+        return iOrderDetailDao.getListOrderDetail(id);
+    }
+
+    @Override
+    public List<OrderDetail> getFrontOrderDetailListByUid(Integer uid) {
+        return iOrderDetailDao.getFrontOrderDetailListByUid(uid);
+    }
+}

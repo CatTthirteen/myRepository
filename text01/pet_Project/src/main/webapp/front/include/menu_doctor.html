@@ -1,0 +1,74 @@
+<div class="menu_course menu_doctor">
+    <div class="Clips"><img src="images/course_bg10.png"></div>
+    <div class="item">
+        <ul>
+            <li class="li1">
+                 <a href="">
+                    <div class="info">
+                        <img src="images/course05.png">
+                        <div class="tit"><span>品种介绍</span><br /><em>Varieties</em></div>
+                    </div>
+                </a>
+            </li>
+            <li class="li2">
+                 <a href="">
+                    <div class="info">
+                        <img src="images/course06.png">
+                        <div class="tit"><span>爱宠养护指南</span><br /><em>Dotes Conservation Guide</em></div>
+                    </div>
+                </a>
+            </li>
+            <li class="li3">
+                 <a href="">
+                    <div class="info">
+                        <img src="images/course07.png">
+                        <div class="tit"><span>疾病与健康</span><br /><em>Diseases and Health</em></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="cat"><img src="images/course_bg6.png"></div>
+    <script type="text/javascript">
+         $(".li" + liID).addClass("on");
+    </script>
+</div>
+<script type="text/javascript">
+    $(window).load(function () {
+        $(".item ul li").each(function () {
+            //设置和获取一些变量
+            var thumbnail = {
+                imgIncrease: 30, /* 增加图像像素（变焦） */
+                effectDuration: 400, /* 效果的持续时间（变焦和标题） */
+                imgWidth: $(this).find('img').width(),
+                imgHeight: $(this).find('img').height()
+            };
+            $(this).css({
+                'width': thumbnail.imgWidth,
+                'height': thumbnail.imgHeight
+            });
+            $(this).hover(function () {
+                $(this).find('img').stop().animate({
+                    /* 变焦效果，提高图像的宽度 */
+                    width: parseInt(thumbnail.imgWidth) + thumbnail.imgIncrease,
+                    height: parseInt(thumbnail.imgHeight) + thumbnail.imgIncrease,
+                    /* 我们需要改变的左侧和顶部的位置，才能有放大效应，因此我们将它们移动到一个负占据一半的img增加 */
+                    left: thumbnail.imgIncrease / 2 * (-1),
+                    top: thumbnail.imgIncrease / 2 * (-1)
+
+                }, {
+                    "duration": thumbnail.effectDuration,
+                    "queue": false
+                });
+                //当鼠标离开...
+            }, function () {
+                $(this).find('img').animate({
+                    width: thumbnail.imgWidth,
+                    height: thumbnail.imgHeight,
+                    left: 0,
+                    top: 0
+                }, thumbnail.effectDuration);
+            });
+        });
+    });
+</script>

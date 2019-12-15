@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        ">
+
+	<!-- 1.开启包扫描 -->
+	<context:component-scan base-package="com.qf" use-default-filters="false">
+		<!-- 只扫描加了@COntroller的bean -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<mvc:annotation-driven />
+
+	<!-- 2.视图解析器 -->
+	<bean id="jspViewResolver"
+		  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+				  value="org.springframework.web.servlet.view.JstlView" />
+		<!-- 将视图名 渲染后视图的前缀 -->
+		<property name="prefix" value="/" />
+		<!-- 渲染后视图的后缀 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 配置拦截器，如果没有登录，不能对帖子进行回复 -->
+	<mvc:interceptors>
+
+		<!-- 配置影响的路径（需要拦截的路径） -->
+		<mvc:interceptor>
+			<mvc:mapping path="/frontUser/getUserById"/>
+			<mvc:mapping path="/productFront/getFrontProduct"/>
+			<!-- 把创建的拦截器注入进来 -->
+			<bean class="com.qf.interceptor.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 3.静态资源文件忽略 -->
+	<!-- spring4.1.4 写法:/js/ spring4.0.3写法：/js/* -->
+	<mvc:resources location="/after/js/" mapping="after/js/**" />
+	<mvc:resources location="/after/css/" mapping="after/css/**" />
+	<mvc:resources location="/after/images/" mapping="after/images/**" />
+	<mvc:resources location="/after/lib/" mapping="after/lib/**" />
+	<mvc:resources location="/after/skin/" mapping="after/skin/**" />
+
+	<mvc:resources location="/upload/" mapping="/upload/**" />
+
+	<mvc:resources location="/front/css/" mapping="front/css/**" />
+	<mvc:resources location="/front/images/" mapping="front/images/**" />
+	<mvc:resources location="/front/include/" mapping="front/include/**" />
+	<mvc:resources location="/front/media/" mapping="front/media/**" />
+	<mvc:resources location="/front/scripts/" mapping="front/scripts/**" />
+	<mvc:resources location="/front/uploadfiles/" mapping="front/uploadfiles/**" />
+	<mvc:resources location="/front/js/" mapping="/front/js/**" />
+
+	<!-- 文件上传的配置 -->
+	<bean id="multipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置编码格式 -->
+		<property name="defaultEncoding" value="utf-8"></property>
+		<!-- 设置上传文件总大小，单位字节 -->
+		<property name="maxUploadSize" value="20971520"></property>
+
+	</bean>
+
+	<aop:config proxy-target-class="true"></aop:config>
+
+	<!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>-->
+</beans>

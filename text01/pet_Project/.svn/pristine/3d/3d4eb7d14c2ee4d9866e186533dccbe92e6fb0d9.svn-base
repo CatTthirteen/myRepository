@@ -1,0 +1,83 @@
+<footer class="Bottom">
+	<div class="Bottom1">
+    	<nav class="BottomNav">
+        	<ul>
+            	<li>
+                	<a class="navB"  href=""><span>关于汉维</span><em>About Us</em></a>
+                    <dl>
+                    	<dt><a href="">公司介绍<em>Company Profile</em></a></dt>
+                        <dt><a href="">品牌故事<em>Brand Story</em></a></dt>
+                        <dt><a href="">企业文化<em>Enterprise Culture</em></a></dt>
+                        <dt><a href="">大事记<em>Memorabilia</em></a></dt>
+                    </dl>
+                </li>
+                <li>
+                	<a class="navB"  href=""><span>新闻活动</span><em>Latest News</em></a>
+                    <dl>
+                        <dt><a href="">汉维动态<em>Hanvet Press</em></a></dt>
+                        <dt><a href="">优惠活动<em>Promotion</em></a></dt>
+                    </dl>
+                </li>
+                <li>
+                	<a class="navB"  href=""><span>汉维产品</span><em>Our Products</em></a>
+                    <dl>
+                        <dt><a href="">宠立维<em> Trolevis</em></a></dt>
+                        <dt><a href="">美昔<em>Melocam</em></a></dt>
+                    </dl>
+                </li>
+                <li>	
+                    <a class="navB"  href=""><span>汉维课堂</span><em>Hanvet Classroom</em></a>
+                     <dl>
+                        <dt><a href="">皮肤病<em>Dermatosis</em></a></dt>
+                        <dt><a href="">口腔疾病<em>Oral Diseases</em></a></dt>
+                        <dt><a href="">呼吸系统疾病<em>Respiratory Disease</em></a></dt>
+                        <dt><a href="">胃肠道疾病<em>Gastrointestinal disease</em></a></dt>
+                    </dl>
+                </li>
+                <li>
+                	<a class="navB"  href=""><span>职业发展</span><em>Careers</em></a>
+                    <dl>
+                        <dt><a href="">职业发展<em> Careers</em></a></dt>
+                    </dl>
+                </li>
+                <li>
+                	<a class="navB"  href=""><span>联系我们</span><em>Contact Us</em></a>
+                    <dl>
+                        <dt><a href="">联系我们<em> Contact Us</em></a></dt>
+                    </dl>
+                </li>
+            </ul>
+        </nav>
+        <div class="right1">
+        	<div class="HotLine">
+            	<span>热线电话：<br />Hotline</span>
+                <em>400-400-2222</em>
+            </div>
+            <div class="Wei">
+            	<div class="img"><img src="uploadfiles/image/weixin.jpg" width="106" height="105" /></div>
+                <span><b>关注微博</b><br /><em>扫描二维码,关注官方微博</em></span>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="Bottom2">
+      <nav class="Bottomlinks">
+        <ul>
+            <li><a href="">流量统计</a></li><em>|</em>
+            <li><a href="">法律声明</a></li><em>|</em>
+            <li><a href="">网站地图</a></li><em>|</em>
+            <li><a href="links.html">合作伙伴</a></li>
+        </ul>
+      </nav>
+      <div class="clear"></div>
+      <section class="Bottomright">
+       Copyright© 2015  上海汉维生物医药科技有限公司  粤ICP备99999999号 
+   Designed by <a href="http://shop116703760.taobao.com/">我的虚拟世界店铺</a>
+      </section>
+    </div>
+</footer>
+
+<script type="text/javascript">
+//整站无图处理
+jQuery.each(jQuery("img"), function (i, n) { jQuery(n).error(function () { n.src = 'uploadfiles/nopic.jpg'; }); n.src = n.src; });
+</script>
